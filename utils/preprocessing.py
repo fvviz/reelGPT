@@ -3,7 +3,7 @@ import os
 from pydub import AudioSegment
 from extract_vid import ExtractVideo
 
-class ExtractTranscript:
+class AudioPreprocessor:
     def __init__(self, FILE_PATH) -> None:
         # Defining imp constants
         self.FILE_PATH= FILE_PATH
