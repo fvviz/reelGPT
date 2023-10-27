@@ -13,8 +13,12 @@ class AudioPreprocessor:
         # Start by converting the given video into an audio segment object.
         # Audio segment is saved as mp3
 
-
+        print("HI nigga" + self.initial_file_name.split(".")[-1])
+        print(self.FILE_PATH)
+        print(self.initial_file_name.split(".")[-1])
         self.audio_seg = AudioSegment.from_file(self.FILE_PATH, self.initial_file_name.split(".")[-1])
+        
+
         self.audio_seg_file_name = self.initial_file_name.replace(".mp4","_audio_seg.mp3")
         self.audio_seg_path = os.path.join(self.DIR, self.audio_seg_file_name)
         self.audio_seg.export(self.audio_seg_path)
@@ -44,4 +48,21 @@ class AudioPreprocessor:
         halfed_audio_seg_filename = self.audio_seg_file_name.replace('.mp3', f'_split_{self.chunk_divisor}.mp3')
         halfed_audio_seg.export(os.path.join(self.DIR, halfed_audio_seg_filename))
         return halfed_audio_seg_filename, halfed_audio_seg
+    
+    def split_to_chunks(self):
+        current_chunks_dir = os.path.join(self.DIR, "current_chunks")
+        os.makedirs(current_chunks_dir, exist_ok=True)
 
+        chunk_duration = len(self.audio_seg) / self.chunk_count
+
+        for i in range(self.chunk_count):
+            start_time = i * chunk_duration
+            end_time = (i + 1) * chunk_duration
+
+            chunk = self.audio_seg[start_time:end_time]
+
+            chunk_filename = f"chunk_{i}.mp3"
+
+            chunk_path = os.path.join(current_chunks_dir, chunk_filename)
+            chunk.export(chunk_path, format="mp3")
+        
