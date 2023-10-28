@@ -66,7 +66,7 @@ class TranscriptionModel:
             print(f"\nCreating SRT file")
             srt_writer = get_writer("srt", output_directory)
             srt_writer(result, str(self.file.stem), options)
-            srt_path = os.path.join(self.file.stem, ".srt")
+            srt_path = str(self.file.stem)+ ".srt"
             print("Srt filed saved to:", srt_path)
 
         return srt_path
