@@ -12,7 +12,7 @@ import os
 
 class ExtractVideo:
     def __init__(self, directory):
-        self.VID_ID= str(uuid.uuid4())
+        self.VID_ID= "id"
         self.FOLDER = directory
         self.FILE_NAME = os.path.join(self.FOLDER, f"{self.VID_ID}.mp4")
 
@@ -35,7 +35,7 @@ class ExtractVideo:
 
 
 class TranscriptionModel:
-    def __init__(self,filepath, MODEL='small', language='hi'):
+    def __init__(self,filepath, MODEL='tiny', language='hi'):
         DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
         self.filepath = filepath

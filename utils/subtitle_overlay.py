@@ -52,7 +52,7 @@ class SubtitleOverlay():
         print("length of subs : " + str(len(subtitles)))
         print("saved path" + self.subtitle_save_path)
         begin,end= mp4filename.split(".mp4")
-        output_video_file = begin+'_subtitled'+".mp4"
+        output_video_file = "final_output.mp4"
 
         print ("Output file name: ",output_video_file)
 
