@@ -34,11 +34,11 @@ class ExtractVideo:
 
 
 
-
 class TranscriptionModel:
     def __init__(self,filepath, MODEL='small', language='hi'):
         DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
+        self.filepath = filepath
         self.file = Path(filepath)
         self.language= language
         
@@ -54,7 +54,7 @@ class TranscriptionModel:
         'highlight_words': False
         }
 
-        result = self.model.transcribe(self.file, verbose = False, language=self.language)
+        result = self.model.transcribe(self.filepath, verbose = False, language=self.language)
 
         if plain:
             txt_path = self.file.with_suffix(".txt")
@@ -66,7 +66,7 @@ class TranscriptionModel:
             print(f"\nCreating SRT file")
             srt_writer = get_writer("srt", output_directory)
             srt_writer(result, str(self.file.stem), options)
-            srt_path = os.path.join(self.file.stem, ".srt")
+            srt_path = str(self.file.stem)+ ".srt"
             print("Srt filed saved to:", srt_path)
 
         return srt_path
