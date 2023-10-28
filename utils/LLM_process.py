@@ -52,7 +52,6 @@ class ReelSelection:
         out = chain1.run(srt_transcript=self.srt_contents)
         return output_parser.parse(out)
 
-'''
+
 rs = ReelSelection("./RG.srt")
 print(rs.get_imp_parts())   
-'''

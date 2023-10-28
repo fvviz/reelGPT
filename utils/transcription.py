@@ -34,11 +34,11 @@ class ExtractVideo:
 
 
 
-
 class TranscriptionModel:
     def __init__(self,filepath, MODEL='small', language='hi'):
         DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
+        self.filepath = filepath
         self.file = Path(filepath)
         self.language= language
         
@@ -54,7 +54,7 @@ class TranscriptionModel:
         'highlight_words': False
         }
 
-        result = self.model.transcribe(self.file, verbose = False, language=self.language)
+        result = self.model.transcribe(self.filepath, verbose = False, language=self.language)
 
         if plain:
             txt_path = self.file.with_suffix(".txt")
