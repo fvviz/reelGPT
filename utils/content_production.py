@@ -12,4 +12,3 @@ def clip_video(start_time, end_time, input_path, save_path):
         clip = VideoFileClip(input_path)
         clip = clip.subclip(start_time, end_time)
         clip.write_videofile(save_path, codec='libx264')
-        

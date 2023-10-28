@@ -1,10 +1,10 @@
 from utils.transcription import ExtractVideo, TranscriptionModel
 from utils.content_production import timestamp_to_seconds, clip_video
-from utils.llm_process import ReelSelection
+from utils.LLM_process import ReelSelection
 import os
 
 
-LINK = ""
+LINK = "https://www.youtube.com/watch?v=sN73s23qVXw&ab_channel=RahulGandhi"
 MODEL = "small"
 
 
