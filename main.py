@@ -41,7 +41,7 @@ clip_video(st, et, vid_path, os.path.join(os.path.dirname(vid_path), "final_outp
 
 print("Clipped Video")
 
-sub_overlay = SubtitleOverlay(os.path.join(os.path.dirname(vid_path), "final_output.mp4"), srt_out, out['start_time'], out['end_time'])
+sub_overlay = SubtitleOverlay(os.path.join(os.path.dirname(vid_path), "final_output.mp4"), srt_out, out['start_time'], out['end_time']) # YO FAIZ IN CASE YOU DEBUGGIN, OUT[STARTTIME] SUMN HERE SHOULD BE HH:MM:SS type beat format thanks. Hope dis is that aint checked ! 
 sub_overlay.fix_subtitle()
 sub_overlay.overlay_subtitle()
 
