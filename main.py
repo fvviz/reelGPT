@@ -9,7 +9,7 @@ MODEL = "small"
 
 
 
-ev=  ExtractVideo()
+ev=  ExtractVideo(directory=".")
 audio = ev.extract_youtube_audio(LINK)
 
 transcription_model = TranscriptionModel(audio, MODEL)
