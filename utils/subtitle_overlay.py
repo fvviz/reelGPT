@@ -15,10 +15,14 @@ class SubtitleOverlay():
         time_format = "%H:%M:%S,%f"
         start = datetime.strptime(self.start_time, time_format)
         end = datetime.strptime(self.end_time, time_format)
+        print(start.hour, start.minute, start.second, start.microsecond)
+        print(self.start_time)
+        print(start.second + (start.microsecond / 1e6))
         part = subs.slice(starts_after={'hours': start.hour, 'minutes': start.minute, 'seconds': start.second}, ends_before={'hours': end.hour, 'minutes': end.minute, 'seconds': end.second})
-        part.shift(hours=-start.hour, minutes=-start.minute, seconds=-start.second)
+        part.shift(hours=-start.hour, minutes=-start.minute, seconds=-(start.second + (start.microsecond / 1e6)))
         part.save(self.subtitle_save_path, encoding='utf-8')
     
+
     def overlay_subtitle(self):
         
         def time_to_seconds(time_obj):
