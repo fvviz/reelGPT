@@ -8,7 +8,7 @@ import os
 parser = argparse.ArgumentParser(description="Process a YouTube link and generate a transcribed video clip.")
 
 parser.add_argument("LINK", help="YouTube video link")
-parser.add_argument("--model", help="Transcription model (default is 'tiny')", default="tiny")
+parser.add_argument("model", help="Transcription model (default is 'tiny')", default="tiny")
 
 args = parser.parse_args()
 
