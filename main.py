@@ -8,7 +8,7 @@ import os
 parser = argparse.ArgumentParser(description="Process a YouTube link and generate a transcribed video clip.")
 
 parser.add_argument("LINK", help="YouTube video link")
-parser.add_argument("--model", help="Transcription model (default is 'tiny')", default="tiny")
+parser.add_argument("model", help="Transcription model (default is 'tiny')", default="tiny")
 
 args = parser.parse_args()
 
@@ -32,17 +32,18 @@ print(f"Extracted transcription and important parts")
 
 vid_path = ev.extract_video(LINK)
 
+sub_overlay = SubtitleOverlay(vid_path, srt_out) 
+sub_overlay.overlay_subtitle()
+print("Overlayed subtitles")
+
 st = timestamp_to_seconds(out['start_time'])
 et = timestamp_to_seconds(out['end_time'])
 
 print("Extracted timestamps")
 
-clip_video(st, et, vid_path, os.path.join(os.path.dirname(vid_path), "final_output.mp4"))
+clip_video(st, et, os.path.join(os.path.dirname(vid_path), "final_output.mp4"), os.path.join(os.path.dirname(vid_path), "final_output.mp4"))
 
 print("Clipped Video")
 
-sub_overlay = SubtitleOverlay(os.path.join(os.path.dirname(vid_path), "final_output.mp4"), srt_out, out['start_time'], out['end_time']) # YO FAIZ IN CASE YOU DEBUGGIN, OUT[STARTTIME] SUMN HERE SHOULD BE HH:MM:SS type beat format thanks. Hope dis is that aint checked ! 
-sub_overlay.fix_subtitle()
-sub_overlay.overlay_subtitle()
 
-print("Overlayed subtitles")
+
