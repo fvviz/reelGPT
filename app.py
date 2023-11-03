@@ -2,13 +2,13 @@ import streamlit as st
 import subprocess
 
 def run_main_py(LINK, model):
-    cmd = f"python main.py {LINK} --model {model}"
-    process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    cmd = ["python", "main.py", LINK, model]
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = process.communicate()
     if process.returncode == 0:
-        st.success("Process completed successfully.")
+        print("Process completed successfully.")
     else:
-        st.error(f"An error occurred: {err.decode()}")
+        print(f"An error occurred: {err.decode()}")
 
 def display_video(video_path):
     video_file = open(video_path, 'rb')

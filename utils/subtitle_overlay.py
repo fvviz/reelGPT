@@ -8,6 +8,7 @@ class SubtitleOverlay():
         self.subtitle_file_path = subtitle_file_path
         self.subtitle_save_path = subtitle_file_path + "_fixed.srt"
     
+
     def overlay_subtitle(self):
         
         def time_to_seconds(time_obj):
