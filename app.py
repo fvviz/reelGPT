@@ -23,7 +23,7 @@ def main():
 
     if st.button("Process Video"):
         run_main_py(LINK, model)
-        video_path = "final_output.mp4"
+        video_path = "out/final_output.mp4"
         st.subheader("Processed Video")
         display_video(video_path)
 
