@@ -5,13 +5,7 @@ import time
 def run_main_py(LINK, model):
     cmd = ["python", "main.py", LINK, model]
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    while process.poll() is None:
-        st.text("Processing...")
-        time.sleep(0.1)  # Adjust this delay as needed
-    if process.returncode == 0:
-        st.text("Process completed successfully.")
-    else:
-        st.text(f"An error occurred.")
+    process.wait()  # Wait for the process to finish
 
 def display_video(video_path):
     video_file = open(video_path, 'rb')
@@ -23,10 +17,13 @@ def main():
 
     LINK = st.text_input("Enter YouTube video link")
     model = st.selectbox("Select Model", ("tiny", "small", "base", "large"))
+    process_button = st.button("Process Video")
 
-    if st.button("Process Video"):
+    if process_button:
+        process_button.text("Processing...")
+        process_button.disabled = True
+
         with st.spinner("Processing..."):
-            progress_bar = st.progress(0)
             start_time = time.time()
 
             run_main_py(LINK, model)
@@ -34,7 +31,6 @@ def main():
             st.subheader("Processed Video")
             display_video(video_path)
 
-            progress_bar.progress(100)
             end_time = time.time()
             st.text(f"Process completed in {round(end_time - start_time, 2)} seconds")
 
