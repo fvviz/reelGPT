@@ -56,7 +56,7 @@ class TranscriptionModel:
         }
 
         #result = self.model.transcribe(self.filepath, verbose = False, language=self.language)
-        os.environ["REPLICATE_API_TOKEN"] = "r8_bANmpafBXnuLM6KLcyVMSgR9LKFUdQU0EhF0p"
+        os.environ["REPLICATE_API_TOKEN"] = "r8_Pqwb7NxOkT8mPus6VBYZSf8VVjiAfvm4bGMMl"
         result = replicate.run(
                                 "openai/whisper:91ee9c0c3df30478510ff8c8a3a545add1ad0259ad3a9f78fba57fbc05ee64f7",
                                 input={
