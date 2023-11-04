@@ -6,7 +6,6 @@ class SubtitleOverlay():
     def __init__(self, video_path, subtitle_file_path):
         self.video_path = video_path
         self.subtitle_file_path = subtitle_file_path
-        self.subtitle_save_path = subtitle_file_path + "_fixed.srt"
     
 
     def overlay_subtitle(self):
@@ -35,12 +34,12 @@ class SubtitleOverlay():
             return subtitle_clips
 
 
-        srtfilename = self.subtitle_save_path
+        srtfilename = self.subtitle_file_path
         mp4filename = self.video_path
         video = VideoFileClip(mp4filename)
         subtitles = pysrt.open(srtfilename)
         print("length of subs : " + str(len(subtitles)))
-        print("saved path" + self.subtitle_save_path)
+        print("saved path" + self.subtitle_file_path)
         begin,end= mp4filename.split(".mp4")
         output_video_file = "final_output.mp4"
 
