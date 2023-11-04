@@ -65,7 +65,7 @@ class TranscriptionModel:
         if srt:
             print(f"\nCreating SRT file")
             srt_writer = get_writer("srt", output_directory)
-            srt_writer(result, str(self.file.stem))
+            srt_writer(result, str(self.file.stem), options)
             srt_path = str(self.file.stem)+ ".srt"
             print("Srt filed saved to:", srt_path)
 
