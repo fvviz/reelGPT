@@ -17,7 +17,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 class ReelSelection:
     def __init__(self, srt_file_path) -> None:
         self.LLM = ChatOpenAI(temperature=0.6, model ='gpt-3.5-turbo-16k', 
-                              openai_api_key="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")
+                              openai_api_key=OPENAI_API_KEY)
         with open(srt_file_path, encoding="utf-8") as srt_file:
             self.srt_contents = srt_file.read()
     def get_imp_parts(self):
