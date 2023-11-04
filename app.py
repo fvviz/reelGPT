@@ -1,11 +1,7 @@
 import streamlit as st
 import subprocess
 import time
-
-def run_main_py(LINK, model):
-    cmd = ["python", "main.py", LINK, model]
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    process.wait()  # Wait for the process to finish
+from main import start
 
 def display_video(video_path):
     video_file = open(video_path, 'rb')
@@ -16,7 +12,6 @@ def main():
     st.title("Reels-GPT")
 
     LINK = st.text_input("Enter YouTube video link")
-    model = st.selectbox("Select Model", ("tiny", "small", "base", "large"))
     process_button = st.button("Process Video")
 
     if process_button:
@@ -24,7 +19,7 @@ def main():
         with st.spinner("Processing..."):
             start_time = time.time()
 
-            run_main_py(LINK, model)
+            start(LINK=LINK,MODEL="large")
             video_path = "out/final_output.mp4"
             st.subheader("Processed Video")
             display_video(video_path)
