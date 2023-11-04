@@ -14,7 +14,7 @@ class SubtitleOverlay():
             return time_obj.hours * 3600 + time_obj.minutes * 60 + time_obj.seconds + time_obj.milliseconds / 1000
 
 
-        def create_subtitle_clips(subtitles, videosize,fontsize=32, font='Nirmala-UI-Bold', color='white', debug = False):
+        def create_subtitle_clips(subtitles, videosize,fontsize=32, font='Poppins-Bold', color='white', debug = False):
             subtitle_clips = []
 
             for subtitle in subtitles:
