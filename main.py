@@ -41,7 +41,7 @@ et = timestamp_to_seconds(out['end_time'])
 
 print("Extracted timestamps")
 
-clip_video(st, et, os.path.join(os.path.dirname(vid_path), "final_output.mp4"), "out/final_output.mp4")
+clip_video(st, et, "final_output.mp4", "out/final_output.mp4")
 
 print("Clipped Video")
 

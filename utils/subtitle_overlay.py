@@ -50,7 +50,7 @@ class SubtitleOverlay():
 
         final_video = CompositeVideoClip([video] + subtitle_clips)
 
-        final_video.write_videofile(output_video_file)
+        final_video.write_videofile(output_video_file, threads = 8, fps=24)
 
 
 """

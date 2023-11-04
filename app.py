@@ -20,9 +20,7 @@ def main():
     process_button = st.button("Process Video")
 
     if process_button:
-        process_button.text("Processing...")
-        process_button.disabled = True
-
+        
         with st.spinner("Processing..."):
             start_time = time.time()
 
