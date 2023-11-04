@@ -7,6 +7,7 @@ import os
 from pytube import YouTube
 import uuid
 import os
+import replicate
 
 
 
@@ -42,7 +43,7 @@ class TranscriptionModel:
         self.file = Path(filepath)
         self.language= language
         
-        self.model = whisper.load_model(MODEL).to(DEVICE)
+        #self.model = whisper.load_model(MODEL).to(DEVICE)
 
     def transcribe_file(self, srt=True, plain=False):
         print(f"Transcribing file: {self.file}\n")
@@ -54,8 +55,18 @@ class TranscriptionModel:
         'highlight_words': False
         }
 
-        result = self.model.transcribe(self.filepath, verbose = False, language=self.language)
-
+        #result = self.model.transcribe(self.filepath, verbose = False, language=self.language)
+        os.environ["REPLICATE_API_TOKEN"] = "r8_bANmpafBXnuLM6KLcyVMSgR9LKFUdQU0EhF0p"
+        result = replicate.run(
+                                "openai/whisper:91ee9c0c3df30478510ff8c8a3a545add1ad0259ad3a9f78fba57fbc05ee64f7",
+                                input={
+                                    "audio": open(self.filepath, "rb"),
+                                    "language":self.language,
+                                    "transcription":"srt",
+                                    },
+                            )
+        
+        print(result)
         if plain:
             txt_path = self.file.with_suffix(".txt")
             print(f"\nCreating text file")
