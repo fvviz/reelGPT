@@ -26,7 +26,7 @@ class SubtitleOverlay():
                 
                 text_clip = TextClip(subtitle.text, fontsize=fontsize, font=font, color=color, bg_color = 'black',size=(video_width*3/4, None), method='caption').set_start(start_time).set_duration(duration)
                 subtitle_x_position = 'center'
-                subtitle_y_position = video_height* 4 / 5 
+                subtitle_y_position = video_height* 3 / 4 
 
                 text_position = (subtitle_x_position, subtitle_y_position)                    
                 subtitle_clips.append(text_clip.set_position(text_position))
